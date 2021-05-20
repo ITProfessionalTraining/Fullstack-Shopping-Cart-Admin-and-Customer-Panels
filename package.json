@@ -1,7 +1,7 @@
 {
-  "name": "paypay",
+  "name": "shoppingCart",
   "version": "1.0.0",
-  "description": "this is a paypay app",
+  "description": "this is a Shoppingcart app",
   "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",

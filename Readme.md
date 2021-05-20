@@ -1,4 +1,4 @@
-## Hello PayPay.
+## Hello.
 
 
 #### Steps 
