@@ -1,16 +1,143 @@
 import react from 'react'
-import {Fragment} from 'react'
+import {Fragment, useEffect, useState} from 'react'
+import {getAdmin} from '../util/getAdmin'
+import {RegisterController} from '../action/auth'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import store from '../store'
 
 
 
-const Register = ()=>{
-    return (
-       <Fragment>
-        <h1>Register Here </h1>
-       </Fragment>
-    )
+const RegisterHandler = ({ register, isAuthenticated })=>{
+    const [checkforAdmin, setcheckforAdmin] = useState('');
+
+    //@ Checking if admin user available
+    const checkAdmin = async ()=>{
+        let adminCheck = await getAdmin('/api/check');
+       setcheckforAdmin(adminCheck.data.admin)
+    }
+        useEffect(()=>{
+            //calling check admin function
+            checkAdmin();
+        }, [])
+
+
+       //formdata is reputed 
+       const [formData, setformData] = useState({
+        name : '',
+        email : '',
+        password: '',
+        confirmpassword: ''
+       })
+
+    const [errorAlert, seterrorAlert] = useState('');
+
+
+    const {name, email, password, confirmpassword} = formData;
+    const onChange = e =>
+    setformData({ ...formData, [e.target.name]: e.target.value });
+
+
+    const onRegister = (e)=>{
+        e.preventDefault();
+        if(password !== confirmpassword){
+           seterrorAlert('Password doest match');
+           setTimeout(()=>{seterrorAlert('')}, 1000)
+        }
+        else{
+            RegisterController(formData);
+        }
+    }
+
+
+    if(checkforAdmin === false){
+        return (
+            <Fragment >
+                     <div className="g-sidenav-show">
+                         <section class="h-100-vh mb-8 ">
+                             <div class="container">
+                               <div class="row mt-lg-n11 mt-md-n11 mt-n11">
+                                 <div class="col-xl-6 col-lg-6 col-md-6 mx-auto">   
+                                
+                                 <div class="card  z-index-0 space shadow">   
+                                     <div className="card-header bg-gradient-primary">
+                                     <div className="row">
+                                         <div className="col-6 heading btn bg-gradient-dark my-4 mb-2 wrap">LOGIN</div>
+                                         <div className="col-6 heading btn bg-gradient-light my-4 mb-2 wrap">REGISTER</div>
+                                     </div>
+                                     </div>                            
+                                     <div class="card-body alert-primary">
+                                        {errorAlert !== '' && <div>
+                                        <p className="heading text-white">{errorAlert}</p>
+                                        </div>}                                                        
+                                         <form onSubmit={onRegister} role="form text-left">
+                                         <div class="mb-3">
+                                         <input type="text" class="form-control input" onChange={onChange} placeholder="Name" name="name" aria-label="Name" aria-describedby="email-addon" required/>
+                                         </div>
+                                         <div class="mb-3">
+                                         <input type="email" class="form-control input"  onChange={onChange} placeholder="Email" name="email" aria-label="Email" aria-describedby="email-addon" required/>
+                                         </div>
+                                         <div class="mb-3">
+                                         <input type="password" class="form-control input"  onChange={onChange} placeholder="Password" name="password" aria-label="Password" aria-describedby="password-addon" required/>
+                                         </div>
+                                         <div class="mb-3">
+                                         <input type="password" class="form-control input"  onChange={onChange} placeholder="Confirm password" name="confirmpassword" aria-label="Password" aria-describedby="password-addon" required/>
+                                         </div>
+                                         <div class="text-center">
+                                         <button type="submit" class=" heading btn bg-gradient-dark w-100 my-4 mb-2">Register</button>
+                                         </div>
+                                         <p class="text-sm mt-3 mb-0 al-100">Already have an account? <a href="/login" class="text-dark font-weight-bolder al-100">Sign in</a></p>
+                                          </form>
+                                     </div>
+                                 </div>
+                                 </div>
+                             </div>
+                             </div>
+                         </section>
+     
+                         </div>
+            </Fragment>
+         )
+    }  
+    else {
+
+        return (
+            <Fragment>
+                <div className="g-sidenav-show">
+                         <section class="h-100-vh mb-8 ">
+                             <div class="container">
+                               <div class="row mt-lg-n11 mt-md-n11 mt-n11">
+                                 <div class="col-xl-6 col-lg-6 col-md-6 mx-auto">                          
+                                 <div class="card  z-index-0 space shadow">   
+                                     <div className="card-header bg-gradient-light">
+                                     <p class="text-sm mt-3 mb-0 al-200">Admin Account have an account? </p>
+                                     </div>                            
+                                     <div class="card-body alert-primary">                            
+                                         <div class="text-center">
+                                         <a href="/login" class=" heading btn bg-gradient-light w-100 my-4 mb-2">LOGIN</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 </div>
+                             </div>
+                             </div>
+                         </section>
+                         </div>
+            </Fragment>
+        )
+    }  
+ 
 }
 
+RegisterHandler.propTypes = {
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+  };
+  
+  const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+  });
 
 
-export default Register;
+
+export default connect(mapStateToProps, {RegisterController})(RegisterHandler);

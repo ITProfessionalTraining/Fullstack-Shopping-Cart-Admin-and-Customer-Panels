@@ -1,4 +1,3 @@
-import { Dispatch } from 'react';
 import {getAdmin} from '../util/getAdmin'
 import {
   GET_PROFILE,
@@ -8,14 +7,16 @@ import {
   LOGIN_FAIL,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
-  LOGOUT
-} from './type';
+  LOGOUT,
+  SET_ALERT
+} from './types';
+import store from '../store'
 
 
 export const loadAdmin  = () => async (dispatch)   => {
   try {
 
-    const res = await api.get('/access');    
+    const res = await getAdmin.get('/access');    
     if(res.data.error){
       dispatch({
         type: AUTH_ERROR
@@ -36,39 +37,43 @@ export const loadAdmin  = () => async (dispatch)   => {
   }
 };
 
-export const Register = async ({firstname, lastname, email, password})=>{
- 
-  const formData =  {firstname, lastname, email, password};  
+export const RegisterController = async formData =>{
+  var {email, name, password} = formData;
   try {
-    const res = await api.post('/register', formData);
-    if(res.status === 200){
-      alert("Successfully Registered");
-      window.location.href = '/';
+    var dataSend = {email, name, password};
+    const res = await getAdmin.post('/api/register', dataSend);
+    store.dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data
+    });
+    //dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      console.log(errors)
     }
-    else{
-      window.location.href = "/register"
+    store.dispatch({
+      type: REGISTER_FAIL
     }
-    if(res.error){
-      console.log("true")
-    }
-    
-  } catch (error) {
-    throw error;        
+    );
+    store.dispatch({
+      type: SET_ALERT,
+      payload: 'Password needs to be more than 6 character'
+    })
   }
 };
-
 
 export const LoginController  = ({email, password}) => async (dispatch) => {
   const body = { email, password };
 
   try {
-    const res = await api.post('/login', body);
+    const res = await getAdmin.post('/login', body);
      dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
     });
 
-    dispatch(loadUser());
+    dispatch(loadAdmin());
   } catch (err) {
     throw err;
 

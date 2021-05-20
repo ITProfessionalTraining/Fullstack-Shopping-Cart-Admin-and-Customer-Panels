@@ -3,7 +3,6 @@ import {getAdmin} from '../util/getAdmin'
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import {Provider} from 'react-redux';
 import store from '../store';
-import Intro from '../pages/Intro'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 
@@ -15,8 +14,7 @@ const Routing = ()=>{
          <Fragment>
          <Switch>     
          <Route exact path="/register" component={Register}/>
-         <Route exact path="/login" component={Login}/>
-         <Route  exact path="/" component={Intro}/>
+         <Route  exact path="/" component={Login}/>
          </Switch>
          </Fragment>
          </Router>      
@@ -24,5 +22,4 @@ const Routing = ()=>{
     )
 }
 
-
-export default {Routing};
+export default Routing;

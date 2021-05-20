@@ -64,11 +64,11 @@ Router.post('/login',
 Router.get('/check', async(req, res)=>{
 
     let adminCheck = await ADMINMODEL.find({});
-    if(adminCheck.lenght > 0){
-        res.json({admin: true})
+    if(adminCheck.length == 0){
+      res.json({admin: false})
     }
     else{
-        res.json({admin: false});
+      res.json({admin: true})
     }
 })
 

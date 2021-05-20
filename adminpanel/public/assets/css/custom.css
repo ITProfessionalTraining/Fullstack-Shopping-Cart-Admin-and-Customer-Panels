@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap');
+
+
+
+.space{
+    margin-top: 45vh;
+}
+
+.heading{
+    font-size: 18px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.input{
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    height: 50px;
+    margin: 20px 20px 20px 0px;
+}
+
+.al-100{
+    font-size: 16px !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    color: white !important;
+}
+
+.al-200{
+    font-size: 16px !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    color: black !important;
+}
+
+.wrap{
+    font-size: 17px !important;
+    padding: 10px;
+    font-family: 'Ubuntu', sans-serif !important;
+    border-radius: 4px;
+    text-align: center;
+
+}
