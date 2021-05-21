@@ -1,10 +1,9 @@
-import {GET_PRODUCTS} from './types'
+import {GET_PRODUCTS, GET_TRENDING_PRODUCT} from './types'
 import store from '../store'
 import {getProducts} from '../util/getProduct'
 
 
-export const allProducts = async () =>{
-
+export const ALL_PRODUCTS = async () =>{
     try {
         let data = await getProducts.get('/api/v1');
         store.dispatch({
@@ -15,8 +14,19 @@ export const allProducts = async () =>{
     } catch (error) {
 
       console.log(error);
-        
     }
- 
+}
 
+
+export const TRENDING_PRODUCTS = async ()=>{
+  try {
+    let data = await getProducts.get('/api/trending');
+    store.dispatch({
+      type: GET_TRENDING_PRODUCT,
+      payload: data.data
+    })
+  } catch (error) {
+    console.log('error')
+    
+  }
 }

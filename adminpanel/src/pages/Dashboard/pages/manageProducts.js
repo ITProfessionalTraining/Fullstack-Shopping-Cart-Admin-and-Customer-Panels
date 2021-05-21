@@ -3,14 +3,17 @@ import SIDEBAR from '../components/Sidebar'
 import TOPBAR from '../components/TopBar'
 import {useEffect} from 'react'
 import {useState} from 'react'
-import {allProducts} from '../../../action/Products'
+import {ALL_PRODUCTS, TRENDING_PRODUCTS} from '../../../action/Products'
+import store from '../../../store.js'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 
-const ManageProducts = ()=>{
+const ManageProducts = ({product})=>{
 
 
     useEffect(()=>{
-        allProducts();
-
+       ALL_PRODUCTS();
+        TRENDING_PRODUCTS();
     }, [])
 
 
@@ -36,6 +39,7 @@ const ManageProducts = ()=>{
                 <div class="d-grid gap-3" >
                         <div class="alert-light shadow border rounded-3">
                             <br/> <br/><br/>
+                           
                             </div>
                 </div>
             </div>
@@ -46,5 +50,13 @@ const ManageProducts = ()=>{
     )
 }
 
+ManageProducts.propTypes = {
+    product: PropTypes.object.isRequired
+  };
+  
+  const mapStateToProps = (state) => ({
+    product: state.product
+  });
+  
+  export default connect(mapStateToProps, { ALL_PRODUCTS })(ManageProducts);
 
-export default ManageProducts;

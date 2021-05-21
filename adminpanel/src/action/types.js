@@ -12,3 +12,5 @@ export const SET_ALERT = 'SET_ALERT'
 
 //Product Related Types 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCTS_ERROR = 'GET_PRODUCTS_ERROR';
+export const GET_TRENDING_PRODUCT = 'GET_TRENDING_PRODUCT'

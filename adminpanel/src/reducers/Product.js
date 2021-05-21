@@ -1,7 +1,8 @@
-import {GET_PRODUCTS} from '../action/types'
+import {GET_PRODUCTS, GET_TRENDING_PRODUCT} from '../action/types'
 
 const initialState = {
-    products: null
+    products: null,
+    trendingProducts : null
   };
 
   export default function (state = initialState, action) {
@@ -10,8 +11,14 @@ const initialState = {
         case GET_PRODUCTS:
             return {
                 ...state,
-                ...payload
+                products:{...payload}
             };
+
+        case GET_TRENDING_PRODUCT :
+          return{
+              ...state,
+              ...payload
+          };
             default:
           return state;
 
