@@ -46,6 +46,7 @@ const RegisterHandler = ({ register, isAuthenticated })=>{
         }
         else{
             RegisterController(formData);
+            window.location.reload()
         }
     }
 
@@ -53,18 +54,16 @@ const RegisterHandler = ({ register, isAuthenticated })=>{
     if(checkforAdmin === false){
         return (
             <Fragment >
+            <div className="bg-img">
                      <div className="g-sidenav-show">
                          <section class="h-100-vh mb-8 ">
                              <div class="container">
                                <div class="row mt-lg-n11 mt-md-n11 mt-n11">
                                  <div class="col-xl-6 col-lg-6 col-md-6 mx-auto">   
                                 
-                                 <div class="card  z-index-0 space shadow">   
+                                 <div  class="card  z-index-0 space shadow">   
                                      <div className="card-header bg-gradient-primary">
-                                     <div className="row">
-                                         <div className="col-6 heading btn bg-gradient-dark my-4 mb-2 wrap">LOGIN</div>
-                                         <div className="col-6 heading btn bg-gradient-light my-4 mb-2 wrap">REGISTER</div>
-                                     </div>
+                                    
                                      </div>                            
                                      <div class="card-body alert-primary">
                                         {errorAlert !== '' && <div>
@@ -86,15 +85,18 @@ const RegisterHandler = ({ register, isAuthenticated })=>{
                                          <div class="text-center">
                                          <button type="submit" class=" heading btn bg-gradient-dark w-100 my-4 mb-2">Register</button>
                                          </div>
-                                         <p class="text-sm mt-3 mb-0 al-100">Already have an account? <a href="/login" class="text-dark font-weight-bolder al-100">Sign in</a></p>
+                                        
                                           </form>
+                                     </div>
+                                     <div className="card-footer bg-gradient-primary">
+                                     <p class="text-sm mt-3 mb-0 al-100">Already have an account? <a href="/login" class="text-dark font-weight-bolder al-100">Sign in</a></p>
                                      </div>
                                  </div>
                                  </div>
                              </div>
                              </div>
                          </section>
-     
+            </div>
                          </div>
             </Fragment>
          )
@@ -114,7 +116,7 @@ const RegisterHandler = ({ register, isAuthenticated })=>{
                                      </div>                            
                                      <div class="card-body alert-primary">                            
                                          <div class="text-center">
-                                         <a href="/login" class=" heading btn bg-gradient-light w-100 my-4 mb-2">LOGIN</a>
+                                         <a href="/" class=" heading btn bg-gradient-light w-100 my-4 mb-2">LOGIN</a>
                                          </div>
                                      </div>
                                  </div>

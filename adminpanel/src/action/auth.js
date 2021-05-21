@@ -12,30 +12,19 @@ import {
 } from './types';
 import store from '../store'
 
-
-export const loadAdmin  = () => async (dispatch)   => {
+export const loadAdmin  = async () => {
   try {
-
-    const res = await getAdmin.get('/access');    
-    if(res.data.error){
-      dispatch({
-        type: AUTH_ERROR
-      });
-
-    }else{
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data
-      });
-    }
-
-   
+    const res = await getAdmin.get('/api/access');    
+    store.dispatch({
+      type: USER_LOADED,
+      payload: res.data
+    });
   } catch (err) {
-    dispatch({
+    store.dispatch({
       type: AUTH_ERROR
     });
-  }
-};
+}
+}
 
 export const RegisterController = async formData =>{
   var {email, name, password} = formData;
@@ -63,24 +52,27 @@ export const RegisterController = async formData =>{
   }
 };
 
-export const LoginController  = ({email, password}) => async (dispatch) => {
-  const body = { email, password };
-
+export const LoginController  = async formData  => {
+  const body = formData;
   try {
-    const res = await getAdmin.post('/login', body);
-     dispatch({
+    const res = await getAdmin.post('/api/login', body);
+    console.log(res)
+     store.dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
     });
 
-    dispatch(loadAdmin());
+    loadAdmin();
   } catch (err) {
     throw err;
-
-    dispatch({
+    store.dispatch({
       type: LOGIN_FAIL
     });
   }
 };
 
-export const LogoutController = () => ({ type: LOGOUT });
+export const LogoutController = () => {
+  store.dispatch({
+    type: LOGOUT
+  })
+};

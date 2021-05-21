@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Ellipsis} from 'react-css-spinners';
-
+import PropTypes from 'prop-types'
 
 const PrivateRoute = ({
   component: Component,
@@ -17,11 +17,16 @@ const PrivateRoute = ({
       ) : isAuthenticated ? (
         <Component {...props} />
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
+        
       )
     }
   />
 );
+
+PrivateRoute.propTypes = {
+  auth: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth
