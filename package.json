@@ -27,6 +27,7 @@
     "server": "nodemon server",
     "admin": "npm start --prefix adminpanel",
     "client": "npm start --prefix client",
+    "admin:build" : "npm run-script build --prefix adminpanel",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "a.daim",

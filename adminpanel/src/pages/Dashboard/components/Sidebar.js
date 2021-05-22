@@ -64,6 +64,20 @@ const sidebar = ()=>{
       </li>
       <li class="border-top my-3"></li>
       <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#shop-collapse" aria-expanded="false">
+        <i class="fas fa-store"></i> &nbsp; Store Settings
+        </button>
+        <div class="collapse " id="shop-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">Shop Setting</a></li>
+            <li><a href="#" class="link-dark rounded">Shop Details</a></li>
+            <li><a href="#" class="link-dark rounded">More Settings</a></li>
+            
+          </ul>
+        </div>
+      </li>
+
+      <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="true">
         <i class="fas fa-cogs"></i> &nbsp;Account
         </button>

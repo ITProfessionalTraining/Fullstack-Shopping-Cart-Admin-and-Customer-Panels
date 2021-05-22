@@ -229,3 +229,47 @@ body {
 .space{
   margin: 0px 10px !important;
 }
+
+.rounded {
+  font-size: 16px !important;
+  color: #212121  !important; 
+}
+
+.link-dark{
+  font-size: 13px !important;
+}
+
+.product-text{
+  font-size: 13px;
+}
+
+.prodo-img{
+  width: 25px;
+}
+
+.space-2{
+  margin: 2px;
+}
+
+.full-bright{
+  background-color: rgb(255,255,255, 0.5);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+
+}
+
+.margin{
+  margin-top: 10vh;
+  margin-left: 8% !important;
+}
+
+.img-100{
+  width: 100px;
+}
+
+.label-heading{
+  font-size: 13px;
+  margin: 5px;
+}

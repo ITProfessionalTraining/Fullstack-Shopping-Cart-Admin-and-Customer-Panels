@@ -17,12 +17,13 @@ const AddProduct = ()=>{
           <div className="col-10">
           <div className="container">
             <TOPBAR/>
+            
             <h1 className="display-6">Add a Product</h1>
             <div class="container-fluid  pb-3"></div>
           <div class="d-grid gap-3" >
                 <div class="alert-light shadow border rounded-3">
                     <div className="spaces">
-                   
+
 
                    <label>Product name</label>
                    <input className="form-control"/>

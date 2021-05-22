@@ -11,7 +11,7 @@ const initialState = {
         case GET_PRODUCTS:
             return {
                 ...state,
-                products:{...payload}
+               products : [...payload]
             };
 
         case GET_TRENDING_PRODUCT :

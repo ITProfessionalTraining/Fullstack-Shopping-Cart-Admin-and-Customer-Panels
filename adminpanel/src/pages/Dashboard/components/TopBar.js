@@ -25,9 +25,9 @@ const TopBar = ()=>{
     
             <div class="dropdown text-end">
               <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user-circle fa-2x"></i>
+              <img style={{width: '40px', borderRadius: '50%'}} src="https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png" />
               </a>
-              <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+              <ul class="dropdown-menu text-small alert-danger" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="#">New project...</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href="#">Profile</a></li>
