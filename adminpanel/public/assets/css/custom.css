@@ -273,3 +273,13 @@ body {
   font-size: 13px;
   margin: 5px;
 }
+
+.search-input{
+  font-size: 14px !important;
+  width: 400px;
+  height: 40px;
+}
+
+label{
+  font-size: 13px;
+}

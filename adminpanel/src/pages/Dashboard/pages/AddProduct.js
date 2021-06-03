@@ -17,8 +17,8 @@ const AddProduct = ()=>{
           <div className="col-10">
           <div className="container">
             <TOPBAR/>
-            
-            <h1 className="display-6">Add a Product</h1>
+            <div className="container">
+            <h1 className="display-6">Products <a href="/dashboard/product/manage" className="btn btn-sm alert-primary">Manage Products</a></h1>
             <div class="container-fluid  pb-3"></div>
           <div class="d-grid gap-3" >
                 <div class="alert-light shadow border rounded-3">
@@ -103,7 +103,7 @@ const AddProduct = ()=>{
 
                   
 
-
+</div>
                    </div>
                 </div>
                

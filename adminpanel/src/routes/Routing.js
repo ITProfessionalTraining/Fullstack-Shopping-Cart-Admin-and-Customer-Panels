@@ -8,6 +8,9 @@ import Register from '../pages/Register'
 import Private from './PrivateRouting'
 import AddProduct from '../pages/Dashboard/pages/AddProduct'
 import Dashboard from '../pages/dashboard'
+import MANAGECUSTOMER from '../pages/Dashboard/customer/ManageCustomer'
+import ADDCUSTOMER from '../pages/Dashboard/customer/AddCustomer'
+import TRACKCUSTOMER from '../pages/Dashboard/customer/TrackCustomer'
 import manageProduct from '../pages/Dashboard/pages/manageProducts'
 
 
@@ -19,13 +22,16 @@ const Routing = ()=>{
          <Switch>     
          <Route exact path="/register" component={Register}/>
          <Route  exact path="/" component={Login}/>
-
-         {// All of the private
-         }
          <Route exact path="/dashboard" component={Dashboard} />
          <Route exact path="/dashboard/product/add" component={AddProduct} />
          <Route exact path="/dashboard/product/manage" component={manageProduct} />
-         <Route component={NotFound} />
+         
+         <Route exact path="/dashboard/customer/manage" component={MANAGECUSTOMER} />
+         <Route exact path="/dashboard/customer/add" component={ADDCUSTOMER} />
+         <Route exact path="/dashboard/customer/track" component={TRACKCUSTOMER} />
+
+
+          <Route component={NotFound} />
          </Switch>
          </Fragment>
          </Router>      
@@ -42,9 +48,7 @@ const NotFound = ()=>{
             <div class="notfound-404">
             <h1>404</h1>
             </div>
-            <h2>Oops, The Page you are looking for can't be found!</h2>
-            
-            
+            <h2>Oops, The Page you are looking for can't be found!</h2>            
             <a href="/"><span class="arrow"></span>Return To Homepage</a>
          
             </div>

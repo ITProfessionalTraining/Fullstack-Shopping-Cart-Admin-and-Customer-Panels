@@ -88,10 +88,8 @@ const ManageProducts = ({product})=>{
                  </div>
                 </div>
                 </div>}
-
-
                 {deleteProduct.isSwitch !== false && <div> 
-                    <div className="full-bright">
+                <div className="full-bright">
                 <div className="container">
                 <div class="container margin container-table">
                     <div class="row vertical-center-row">

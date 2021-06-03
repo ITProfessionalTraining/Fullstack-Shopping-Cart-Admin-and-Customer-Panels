@@ -28,24 +28,21 @@ const sidebar = ()=>{
         </button>
         <div class="collapse " id="products-collapse">
           <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">All Products</a></li>
-            <li><a href="#" class="link-dark rounded">Manage Inventory</a></li>
-            <li><a href="#" class="link-dark  rounded">Delete Products</a></li>
-            <li><a href="#" class="link-dark  rounded">Add Product</a></li>
+            <li><a href="/dashboard/product/manage" class="link-dark rounded">Manage Inventory</a></li>
+            <li><a href="/dashboard/product/add" class="link-dark  rounded">Add Product</a></li>
           </ul>
         </div>
       </li>
 
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-        <i class="fas fa-tachometer-alt"></i> &nbsp;Dashboard
+        <i class="fas fa-tachometer-alt"></i> &nbsp;Customer
         </button>
         <div class="collapse" id="dashboard-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Overview</a></li>
-            <li><a href="#" class="link-dark rounded">Weekly</a></li>
-            <li><a href="#" class="link-dark rounded">Monthly</a></li>
-            <li><a href="#" class="link-dark rounded">Annually</a></li>
+            <li><a href="/dashboard/customer/add" class="link-dark rounded">Add Customer</a></li>
+            <li><a href="/dashboard/customer/manage" class="link-dark rounded">Manage Customer</a></li>
+            <li><a href="/dashboard/customer/track" class="link-dark rounded">Track Customer</a></li>
           </ul>
         </div>
       </li>

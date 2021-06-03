@@ -13,7 +13,6 @@ const initialState = {
                 ...state,
                products : [...payload]
             };
-
         case GET_TRENDING_PRODUCT :
           return{
               ...state,

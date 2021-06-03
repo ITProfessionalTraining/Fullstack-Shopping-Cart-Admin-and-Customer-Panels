@@ -7,6 +7,7 @@ import {
     SET_ALERT
   } from '../action/types';
 
+
   const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
@@ -14,7 +15,6 @@ import {
     user: null,
     error: null
   };
-
 
   export default function (state = initialState, action) {
     const { type, payload } = action;
@@ -52,9 +52,9 @@ import {
             return {
               payload
             };
-
-        case LOGOUT:
-          return {
+          
+            case LOGOUT:
+             return {
             ...state,
             token: null,
             isAuthenticated: false,

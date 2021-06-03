@@ -46,7 +46,7 @@ const RegisterHandler = ({ register, isAuthenticated })=>{
         }
         else{
             RegisterController(formData);
-            window.location.reload()
+            window.location.reload();
         }
     }
 

@@ -7,6 +7,8 @@ const auth = require('../../middleware/authMiddleware');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
+const CUSTOMERMODEL = require('../../model/Customer.model');
+const CustomerModel = require('../../model/Customer.model');
 
 
 // @route    POST api/login
@@ -208,6 +210,35 @@ Router.post('/register',
     }
 }
   );
+
+
+
+  Router.post('/customer/add', async (req, res)=>{
+    var {customername, customeremail , customerpassword, buildingno, streetno, postcode} = req.body;
+    const getAllCustomers = await CustomerModel.find({email : customeremail});
+    if(getAllCustomers.length == 0){
+
+      let customer = new CustomerModel({
+        name: customername,
+        email: customeremail,
+        password: customerpassword,
+        address : [
+          {
+            buildingNo : buildingno,
+            StreetNo : streetno,
+            postCode : postcode
+        }
+        ]
+      })
+
+      customer.save();
+      res.json({msg: 'Customer registered Successfully', type: 'success'});
+    }
+    else{
+      res.json({msg: 'Customer already Exist', type: 'error'});
+    }
+
+  })
 
 
 

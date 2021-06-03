@@ -14,3 +14,7 @@ export const SET_ALERT = 'SET_ALERT'
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCTS_ERROR = 'GET_PRODUCTS_ERROR';
 export const GET_TRENDING_PRODUCT = 'GET_TRENDING_PRODUCT'
+
+
+//Customer Related Types
+export const GET_CUSTOMERS = 'GET_CUSTOMERS';
