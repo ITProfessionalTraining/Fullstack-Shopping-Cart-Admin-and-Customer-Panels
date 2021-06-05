@@ -4,7 +4,7 @@ import {
 
 
   const initialState = {
-    customers: null
+    customers: undefined
   };
 
  

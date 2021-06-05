@@ -4,7 +4,6 @@ import TOPBAR from '../components/TopBar'
 import {useEffect} from 'react'
 import {useState} from 'react'
 import {ALL_PRODUCTS, TRENDING_PRODUCTS} from '../../../action/Products'
-import store from '../../../store.js'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 
@@ -31,8 +30,6 @@ const ManageProducts = ({product})=>{
     useEffect(()=>{
        ALL_PRODUCTS();
         TRENDING_PRODUCTS();
-
-        console.log(product)
     }, [])
 
 
@@ -59,6 +56,51 @@ const ManageProducts = ({product})=>{
     }
 
 
+    const PAGINATION = ()=>{
+        const [dataset, setdataset] = useState('');
+        useEffect(()=>{
+            intialFiltered();
+        }, [])
+
+        function intialFiltered (){
+            if(product.products !== null && product.products !== undefined){
+            const ALL_PAGINATED_ITEMS = product.products.slice(0, 10);
+            setdataset(ALL_PAGINATED_ITEMS);
+            }
+        }
+        
+        if(product.products !== null && product.products !== undefined){
+            const ALL_PAGINATED_ITEMS = product.products.length;
+            var allSizes = Math.ceil(ALL_PAGINATED_ITEMS / 10);
+
+            const PaginateHandler = ()=>{
+                alert('hi')
+            }
+
+
+            return (
+                <div>
+                    <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {(()=>{
+                            for(var a =0; a < allSizes; a++){
+                                return (
+                                    <li class="page-item"><button onClick={PaginateHandler} class="page-link" href="#">{a+1 }</button></li>
+                                )
+                            }
+                        })()}
+                    </ul>
+                    </nav>
+  
+                </div>
+                
+            )
+
+        }
+
+
+    }
+ 
     return (
             <div>
              <div>
@@ -216,8 +258,7 @@ const ManageProducts = ({product})=>{
                         <button className="btn  btn-dark">Add Product</button>
                     </div>
 
-                  
-
+                    
                   
 
                     </div>
@@ -288,9 +329,8 @@ const ManageProducts = ({product})=>{
                                     </tbody>
                                     </table>
                                     </div> }
-
                                     </div>}
-                                    
+                                    {PAGINATION(product)}
                                     </div>
                                     </div>
                                         </div>

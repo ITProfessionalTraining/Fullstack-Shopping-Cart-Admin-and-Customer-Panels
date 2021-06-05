@@ -3,13 +3,19 @@ import {Fragment, useState, useEffect} from 'react'
 import SIDEBAR from '../components/Sidebar'
 import TOPBAR from '../components/TopBar'
 import {GET_ALL_CUSTOMERS} from '../../../action/customer.action'
+import {connect} from 'react-redux'
 
 
-const MANAGECUSTOMER = ()=>{
+const MANAGECUSTOMER = ({customer})=>{
+
+    const [allCustomer, setallCustomer] = useState(undefined);
 
     useEffect(()=>{
         GET_ALL_CUSTOMERS();
+        setallCustomer(customer.customers);
     },[])
+
+
 
 
     return (
@@ -28,7 +34,7 @@ const MANAGECUSTOMER = ()=>{
                     <div className="container">
                         <TOPBAR/>
                         <div className="container">
-                        <h1 className="display-6">Products <a href="/dashboard/product/add" className="btn btn-sm alert-primary">Add New</a></h1>
+                        <h1 className="display-6"> Manage Customers <a href="/dashboard/customer/add" className="btn btn-sm alert-primary">Add New</a></h1>
                               <div class="container-fluid  pb-3"></div>
                             <div class="d-grid gap-3" >
                                     <div class="alert-light shadow border rounded-3">
@@ -38,32 +44,42 @@ const MANAGECUSTOMER = ()=>{
                                     <thead className="alert-success ">
                                         <tr>
                                         <th className="product-text" scope="col">Name</th>
-                                        <th className="product-text" scope="col">Category</th>
-                                        <th className="product-text" scope="col">Image</th>
-                                        <th className="product-text" scope="col">Price</th>
-                                        <th className="product-text" scope="col">Size</th>
-                                        <th  className="product-text" scope="col">Stock</th>
+                                        <th className="product-text" scope="col">Email</th>
+                                        <th className="product-text" scope="col">Total Orders</th>
+                                        <th className="product-text" scope="col">Registeration Date</th>
+                                        <th  className="product-text" scope="col">Address </th>
                                         <th  className="product-text" scope="col">Manage </th>
                                         </tr>
                                     </thead>                                       
                                         <tbody>
-                                         <tr>
-                                        <td className="product-text"></td>
-                                        <td className="product-text"></td>
+                                        {allCustomer !== undefined  && <Fragment>
+                                        {allCustomer.map((aCustomer, index)=>{
+                                            return <Fragment key={index}>
+                                            <tr>
+                                        <td className="product-text">{aCustomer.name}</td>
+                                        <td className="product-text">{aCustomer.email}</td>
+                                        <td className="product-text"> {aCustomer.orders.length}</td>
+                                        <td className="product-text">{aCustomer.registerationDate}</td>
+                                                                               
                                         <td className="product-text">
-                                        <img  className="prodo-img" />    
-                                        </td>
-                                        <td className="product-text"> £</td>
-                                        <td className="product-text"></td>
-                                        <td className="product-text"></td> 
+                                            {aCustomer.address[0].buildingNo}
+                                            <br/>
+                                            {aCustomer.address[0].StreetNo}
+                                            <br/>
+                                            {aCustomer.address[0].postCode}
+                                        </td> 
                                         <td className="product-text">
                                         <div  className="d-flex">
-                                        <button  className="alert-danger shadow btn-sm btn space-2"><i class="fas fa-trash"></i></button>
-                                        <button  className="alert-primary shadow btn-sm btn space-2"><i class="fas fa-eye"></i></button>  
+                                        <button  className="alert-danger shadow btn-sm btn space-2"><i class="fas fa-trash"></i></button>  
                                         <button  className="alert-warning shadow text-success btn-sm btn space-2"><i class="far fa-edit"></i></button>   
                                         </div>                                        
                                         </td>    
                                         </tr>
+                                            </Fragment>
+                                        })}
+                                        </Fragment>}
+
+                                       
       
                                     </tbody>
                                     </table>
@@ -82,4 +98,9 @@ const MANAGECUSTOMER = ()=>{
     )
 }
 
-export default MANAGECUSTOMER;
+const mapStateToProps = (state) => ({
+    customer: state.customer
+  });
+  
+export default connect(mapStateToProps, { GET_ALL_CUSTOMERS })(MANAGECUSTOMER);
+
