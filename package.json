@@ -12,9 +12,11 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-validator": "^6.11.1",
+    "jest": "^27.0.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.9",
-    "node": "^16.1.0"
+    "node": "^16.1.0",
+    "supertest": "^6.1.3"
   },
   "devDependencies": {
     "eslint": "^7.26.0",
@@ -27,7 +29,7 @@
     "server": "nodemon server",
     "admin": "npm start --prefix adminpanel",
     "client": "npm start --prefix client",
-    "admin:build" : "npm run-script build --prefix adminpanel",
+    "admin:build": "npm run-script build --prefix adminpanel",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "a.daim",
